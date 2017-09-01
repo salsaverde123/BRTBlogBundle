@@ -1,6 +1,6 @@
 {
 
-  "name": "BRT/BlogBundle",
+  "name": "brt/blog-bundle",
   "version": "v0.8.0",
   "description": "Symfony 3 Blog Bundle",
   "type": "symfony-bundle",
