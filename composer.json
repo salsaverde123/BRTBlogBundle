@@ -1,0 +1,32 @@
+{
+
+  "name": "BRT/BlogBundle",
+  "version": "v0.8.0",
+  "description": "Symfony 3 Blog Bundle",
+  "type": "symfony-bundle",
+  "authors": [{
+    "name": "Bartolomé Rojas Toledo",
+    "email": "bartolomerojastoledo@gmail.com",
+    "homepage": ""
+  }],
+  "keywords": [
+    "blog",
+    "bundle",
+    "symfony",
+    "symfony3"
+  ],
+  "license": [
+    "MIT"
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "symfony/symfony": ">=3.3",
+    "vich/uploader-bundle": "^1.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "BRT\\BlogBundle\\": ""
+    }
+  }
+
+}
