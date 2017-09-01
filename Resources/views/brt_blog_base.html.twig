@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BRT - BLog Bundle</title>
+
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/brtblog/template/starters/assets/css/icons/icomoon/styles.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/brtblog/template/assets/css/bootstrap.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/brtblog/template/assets/css/core.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/brtblog/template/assets/css/components.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/brtblog/template/assets/css/colors.css') }}" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+    {% block stylesheets %}{% endblock %}
+
+    <!-- Core JS files -->
+    <script type="text/javascript" src="{{ asset('bundles/brtblog/template/assets/js/plugins/loaders/pace.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/brtblog/template/assets/js/core/libraries/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/brtblog/template/assets/js/core/libraries/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/brtblog/template/assets/js/plugins/loaders/blockui.min.js') }}"></script>
+    <!-- /core JS files -->
+
+    {% block javascripts %}{% endblock %}
+
+</head>
+
+<body>
+
+<!-- Main navbar -->
+<div class="navbar navbar-default header-highlight">
+    <div class="navbar-header">
+        <a class="navbar-brand text-white text-large" href="{{ path('brt_blog_adminpage') }}">
+            BRT BlogBundle
+        </a>
+    </div>
+
+    <div class="navbar-collapse collapse" id="navbar-mobile">
+
+    </div>
+</div>
+<!-- /main navbar -->
+
+
+<!-- Page container -->
+<div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- Main sidebar -->
+        <div class="sidebar sidebar-main">
+            <div class="sidebar-content">
+
+                <!-- User menu -->
+                <div class="sidebar-user-material">
+                    <div class="category-content">
+                        <div class="sidebar-user-material-content">
+                            <a href="#"><img src="{{ asset('bundles/brtblog/template/assets/images/placeholder.jpg') }}" class="img-circle img-responsive" alt=""></a>
+                            <h6>{{ app.user.name }} @{{ app.user.username }}</h6>
+                            <span class="text-size-small">{{ app.user.email }}</span>
+                        </div>
+
+                        <div class="sidebar-user-material-menu">
+                            <a href="#user-nav" data-toggle="collapse"><span>My account</span> <i class="caret"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="navigation-wrapper collapse" id="user-nav">
+                        <ul class="navigation">
+                            <li><a href="#"><i class="icon-user-plus"></i> <span>My profile</span></a></li>
+                            <li class="divider"></li>
+                            <li><a href="#"><i class="icon-cog5"></i> <span>Settings</span></a></li>
+                            <li><a href="#"><i class="icon-switch2"></i> <span>Logout</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /user menu -->
+
+
+                <!-- Main navigation -->
+                <div class="sidebar-category sidebar-category-visible">
+                    <div class="category-content no-padding">
+                        <ul class="navigation navigation-main navigation-accordion">
+
+                            <!-- Main -->
+                            <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
+                            <li class="active"><a href="{{ path('brt_blog_admin_entry_index') }}"><i class="icon-home4"></i> <span>Entries</span></a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- /main navigation -->
+
+            </div>
+        </div>
+        <!-- /main sidebar -->
+
+
+        <!-- Main content -->
+        <div class="content-wrapper">
+            {% block pageHeader %}
+
+            {% endblock %}
+            <!-- Content area -->
+            <div class="content">
+
+                {% block body %}
+
+                {% endblock %}
+
+
+                <!-- Footer -->
+                <div class="footer text-muted">
+                    &copy; 2017. <a href="#">BRT BLog Bundle</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Bartolomé Rojas</a>
+                </div>
+                <!-- /footer -->
+
+            </div>
+            <!-- /content area -->
+
+        </div>
+        <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+</div>
+<!-- /page container -->
+
+</body>
+</html>
+

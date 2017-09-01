@@ -1,0 +1,79 @@
+{% extends '@BRTBlog/brt_blog_base.html.twig' %}
+
+{% block pageHeader %}
+    <br>
+    <!-- Page header -->
+    <div class="page-header">
+        <div class="breadcrumb-line breadcrumb-line-component">
+            <ul class="breadcrumb">
+                <li><a href="{{ path('brt_blog_adminpage') }}"><i class="icon-home2 position-left"></i> Admin</a></li>
+                <li class="active"><a href="{{ path('brt_blog_admin_entry_index') }}">Posts</a></li>
+            </ul>
+
+            <ul class="breadcrumb-elements">
+                <li><a class="btn btn-primary btn-icon btn-rounded legitRipple" href="{{ path('brt_blog_admin_entry_new') }}"><i class="icon-add"></i></a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- /page header -->
+    <br>
+{% endblock %}
+
+
+{% block body %}
+
+
+
+    <div class="row">
+        <div class="col-md-12">
+            {% for post in posts %}
+
+                <div class="panel panel-flat blog-horizontal blog-horizontal-2">
+                    <div class="panel-body">
+                        <div class="thumb">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                {% if post.postImage is not null %}
+
+                                    <img src="{{ vich_uploader_asset(post, 'postImageFile') }}" class="embed-responsive-item">
+
+                                {% else %}
+
+                                    <img src="{{ asset('bundles/brtblog/template/assets/images/login_cover.jpg') }}" class="embed-responsive-item">
+
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="blog-preview">
+                            <h5 class="blog-title text-semibold">
+                                <a href="#">{{ post.postTitle }}</a>
+                            </h5>
+
+                            {% set postText = (post.postText | striptags) | trim('&nbsp;') %}
+                            {{ postText|length > 400 ? postText|slice(0, 400) ~ '...' : postText }}
+
+                        </div>
+                    </div>
+
+                    <div class="panel-footer panel-footer-condensed"><a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                        <div class="heading-elements">
+                            <ul class="list-inline list-inline-separate heading-text text-muted">
+                                <li>By <a href="#" class="text-muted">{% if post.user is not null %} {{ post.user.name }} {% else %} uknown user {% endif %}</a></li>
+                                <li>Created: {{ post.created | date('d/m/Y H:i:s') }}</li>
+                                <li>{% if post.updated is not null %}Updated: {{ post.updated | date('d/m/Y H:i:s') }} {% else %}  {% endif %}</li>
+                            </ul>
+                            <a href="{{ path('brt_blog_admin_entry_delete', { 'id': post.id }) }}" onclick="return confirm('¿ Seguro que deseas eliminar la entrada ?');" class="heading-text pull-right btn btn-xs btn-danger btn-icon btn-rounded"><i class="icon-trash"></i></a>
+                            <a href="{{ path('brt_blog_admin_entry_edit', { 'id': post.id }) }}" class="heading-text pull-right btn btn-xs btn-primary btn-icon btn-rounded"><i class="icon-pencil"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+
+            {% else %}
+
+                <h2 class="text-default">The Posts table is empty.</h2>
+
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

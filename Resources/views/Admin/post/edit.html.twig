@@ -1,0 +1,144 @@
+{% extends '@BRTBlog/brt_blog_base.html.twig' %}
+
+{% block stylesheets %}
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/brtblog/template/assets/js/plugins/ui/moment/moment.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/brtblog/template/assets/js/plugins/pickers/daterangepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/brtblog/template/assets/js/plugins/editors/summernote/summernote.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/brtblog/template/assets/js/plugins/forms/styling/uniform.min.js') }}"></script>
+    <script type="text/javascript">
+
+        var summernote = null;
+
+        $(document).ready(function () {
+
+
+            // Summernote initialization
+            summernote = $('.summernote');
+
+            summernote.summernote();
+
+            // Summernote in sent of form
+            $('#brt_blog_new_post_form').submit(function () {
+
+                $('#brt_blogbundle_post_postText').val(summernote.summernote('code')).then(function () {
+                    return true;
+                });
+
+            });
+
+
+            // Daterange initialization
+            $('.daterange-basic').daterangepicker({
+                applyClass: 'bg-slate-600',
+                cancelClass: 'btn-default',
+                singleDatePicker: true,
+                timePicker: true,
+                timePicker24Hour: true,
+                locale:{
+                    format: "DD/MM/YYYY HH:mm:ss"
+                }
+            });
+
+
+            // File input initialization
+            $(".file-styled").uniform({
+                fileButtonClass: 'action btn bg-primary'
+            });
+
+
+        });
+
+    </script>
+{% endblock %}
+{% block body %}
+    <!-- 2 columns form -->
+    <form id="brt_blog_new_post_form" class="form-horizontal" action="{{ path('brt_blog_admin_entry_edit', {'id': post.id}) }}" method="post" enctype="multipart/form-data">
+        <div class="panel panel-flat">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <fieldset>
+                            <legend class="text-semibold"><i class="icon-add-to-list position-left"></i> Post Description</legend>
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Title:</label>
+                                <div class="col-lg-9">
+                                    {{ form_widget(form.postTitle, { 'attr': { 'class': 'form-control' } }) }}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="thumb" style="padding: 10px;">
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        {% if post.postImage is not null %}
+
+                                            <img src="{{ vich_uploader_asset(post, 'postImageFile') }}" class="embed-responsive-item">
+
+                                        {% else %}
+
+                                            <img src="{{ asset('bundles/brtblog/template/assets/images/login_cover.jpg') }}" class="embed-responsive-item">
+
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <label class="display-block">Change Image:</label>
+                                {{ form_widget(form.postImageFile, { 'attr': { 'class': 'file-styled' } }) }}
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">User:</label>
+                                <div class="col-lg-9">
+                                    {{ form_widget(form.user, { 'attr': { 'class': 'form-control' } }) }}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Created:</label>
+                                <div class="col-lg-9">
+                                    <input type="text" name="brt_blogbundle_post[created]" class="form-control daterange-basic" value="{{ post.created | date('d/m/Y H:i:s')}}">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="col-md-8">
+                        <fieldset>
+                            <legend class="text-semibold"><i class="icon-pencil position-left"></i> Post Redaction</legend>
+
+                            <div class="form-group">
+                                <div class="col-lg-12 summernote">
+                                    {{ post.postText | raw }}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    {{ form_widget(form.postText, { 'attr': { 'class': 'form-control' } }) }}
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="bg--error text-white">
+                            {{ form_errors(form) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Create <i class="icon-arrow-right14 position-right"></i></button>
+                </div>
+            </div>
+        </div>
+        {{ form_widget(form._token) }}
+    </form>
+    <!-- /2 columns form -->
+
+{% endblock %}

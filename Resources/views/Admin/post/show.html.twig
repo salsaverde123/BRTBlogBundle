@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Post</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ post.id }}</td>
+            </tr>
+            <tr>
+                <th>Posttitle</th>
+                <td>{{ post.postTitle }}</td>
+            </tr>
+            <tr>
+                <th>Posttext</th>
+                <td>{{ post.postText }}</td>
+            </tr>
+            <tr>
+                <th>Postimage</th>
+                <td>{{ post.postImage }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{% if post.created %}{{ post.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updated</th>
+                <td>{% if post.updated %}{{ post.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>User</th>
+                <td>{{ post.user }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('entry_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('entry_edit', { 'id': post.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
