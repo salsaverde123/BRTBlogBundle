@@ -79,48 +79,8 @@ php bin/console doctrine:schema:update --force
 ```
 
 
-Step 6: Update your Security config
-------
 
-Update your security firewalls and encoders to allow access to users
-
-```yml
-
-# app/config/security.yml
-
-security:
-
-    encoders:
-        # ... add encoder to user entity of blog-bundle
-        BRT\BlogBundle\Entity\User:
-            algorithm: bcrypt
-            
-    providers:
-         # ... add new user provider
-        brt_blog_user_db:
-            entity: { class: BRT\BlogBundle\Entity\User, property: username }
-            
-            
-    firewalls:
-        # ... config the firewall. Put in the top of firewalls 
-        brt_blog_firewall:
-            anonymous: ~
-            form_login:
-                login_path: brt_blog_login
-                check_path: brt_blog_login
-                default_target_path: brt_blog_adminpage
-    
-    access_control:
-        # ... add access control rules
-        - { path: ^/blog/default/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/blog/admin, roles: ROLE_ADMIN }
-        
-
-
-```
-
-
-Step 7: Create admin user
+Step 6: Create admin user
 ------
 
 Create first user to initialize the blog project
