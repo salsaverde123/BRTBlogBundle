@@ -52,6 +52,7 @@ class BRTBlogExtension extends Extension implements PrependExtensionInterface
 
             foreach ($container->getExtensions() as $name => $extension) {
 
+
                 // Configuramos la extensión de vich_uploader
                 if($name == "vich_uploader"){
 
@@ -67,6 +68,60 @@ class BRTBlogExtension extends Extension implements PrependExtensionInterface
                         );
 
                         $container->prependExtensionConfig($name, $config);
+                }
+
+
+                // Configuramos el archivo security con lo necesario para el funcionamiento del bundle
+                if($name == "security"){
+
+                    $securityConfigs        = $container->getExtensionConfig($name)[0];
+
+                    // Añadimos el algoritmo
+                    $securityConfigs["encoders"]["BRT\BlogBundle\Entity\User"] = [ "algorithm" => "bcrypt" ];
+
+                    // Añadimos el proveedor de usuarios
+                    $securityConfigs["providers"]["brt_blog_user_db"] = [
+                        "entity" => [
+                            "class"     => "BRT\BlogBundle\Entity\User",
+                            "property" => "username"
+                        ]
+                    ];
+
+                    // Añadimos el firewall al inicio del array de la config de firewalls
+                    $securityConfigs["firewalls"]["brt_blog_firewall"] = [
+                        "anonymous" => [],
+                        "form_login" => [
+                            "login_path"            => "brt_blog_login",
+                            "check_path"            => "brt_blog_login",
+                            "default_target_path"   => "brt_blog_adminpage",
+                        ]
+                    ];
+                    // Ordenamos los firewalls para que la regla pase a estar al principio:
+
+                    $blogFirewal =  $securityConfigs["firewalls"]["brt_blog_firewall"];
+                    unset($securityConfigs["firewalls"]["brt_blog_firewall"]);
+                    $array = [
+                        "brt_blog_firewall" => $blogFirewal
+                    ];
+
+                    foreach ($securityConfigs["firewalls"] as $key => $value) {
+                        $array[$key] = $value;
+                    }
+
+                    $securityConfigs["firewalls"] = $array;
+
+
+
+                    // Añadimos las reglas de control de acceso
+                    $securityConfigs["access_control"][] = [
+                        "path" => "^/blog/default/login", "roles" => "IS_AUTHENTICATED_ANONYMOUSLY"
+                    ];
+                    $securityConfigs["access_control"][] = [
+                        "path" => "^/blog/admin", "roles" => "ROLE_ADMIN"
+                    ];
+
+
+                    $container->prependExtensionConfig($name, $securityConfigs);
                 }
 
             }
