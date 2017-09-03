@@ -13,7 +13,7 @@ Documentation
 ---
 For usage documentation, see:
 
-[Documentation Index](docs/index.md)
+[Documentation Index](Resources/doc/index.md)
 
 License
 ---
