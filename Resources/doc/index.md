@@ -1,0 +1,4 @@
+Index
+====
+
++ [Installation](installation.md)

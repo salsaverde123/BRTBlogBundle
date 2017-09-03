@@ -24,6 +24,17 @@ class Configuration implements ConfigurationInterface
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
 
+        $rootNode
+            ->children()
+                ->arrayNode("uploader")
+                    ->children()
+                        // Post configuration
+                        ->arrayNode("posts")
+                            ->children()
+                                ->scalarNode("uri_prefix")->end() // Uri prefix
+                                ->scalarNode("upload_destination")->end() // Upload destination
+        ;
+
         return $treeBuilder;
     }
 }
