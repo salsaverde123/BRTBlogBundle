@@ -111,18 +111,6 @@ class BRTBlogExtension extends Extension implements PrependExtensionInterface
                     $securityConfigs["firewalls"] = $array;
 
 
-
-                    // Añadimos las reglas de control de acceso, no se puede sobreescribir porque symfony no lo permite
-                    /*
-                        $securityConfigs["access_control"][] = [
-                            "path" => "^/blog/default/login", "roles" => "IS_AUTHENTICATED_ANONYMOUSLY"
-                        ];
-                        $securityConfigs["access_control"][] = [
-                            "path" => "^/blog/admin", "roles" => "ROLE_ADMIN"
-                        ];
-                    */
-
-
                     $container->prependExtensionConfig($name, $securityConfigs);
                 }
 
