@@ -60,8 +60,8 @@ class BRTBlogExtension extends Extension implements PrependExtensionInterface
                             "db_driver" => "orm",
                             "mappings" => array(
                                 "post_image" => [
-                                    "uri_prefix"            => $bundle_config['uploader']['posts']['uri_prefix'],
-                                    "upload_destination"    => $bundle_config['uploader']['posts']['upload_destination'],
+                                    "uri_prefix"            => @$bundle_config['uploader']['posts']['uri_prefix'],
+                                    "upload_destination"    => @$bundle_config['uploader']['posts']['upload_destination'],
                                     "namer"                 => "vich_uploader.namer_uniqid"
                                 ]
                             )
