@@ -22,7 +22,7 @@ paginator:
         filter_value_name: filterValue  # filter value query paameter name
 
 views:
-    list_template: '@BRTBlogBundle/Resources/Views/Blog/list_entries.html.twig'
-    show_template: '@BRTBlogBundle/Resources/Views/Blog/show_entries.html.twig'
-    pagination_template: '@BRTBlogBundle/Resources/Views/Templates/pagination.html.twig'
+    list_template: '@BRTBlog/Resources/Views/Blog/list_entries.html.twig'
+    show_template: '@BRTBlog/Resources/Views/Blog/show_entries.html.twig'
+    pagination_template: '@BRTBlog/Resources/Views/Templates/pagination.html.twig'
 ```
