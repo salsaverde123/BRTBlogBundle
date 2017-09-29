@@ -1,0 +1,49 @@
+{% extends '@BRTBlog/brt_blog_base.html.twig' %}
+
+{% block body %}
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="content-group-lg">
+                        <div class="content-group text-center">
+                            <a href="#" class="display-inline-block">
+                                {% if post.postImage is not null %}
+
+                                    <img src="{{ vich_uploader_asset(post, 'postImageFile') }}" class="img-responsive">
+
+                                {% else %}
+
+                                    <img src="{{ asset('bundles/brtblog/template/assets/images/login_cover.jpg') }}" class="img-responsive">
+
+                                {% endif %}
+                            </a>
+                        </div>
+
+                        <h3 class="text-semibold mb-5">
+                            <a href="#" class="text-default">{{ post.postTitle }}</a>
+                        </h3>
+
+                        <ul class="list-inline list-inline-separate text-muted content-group">
+                            <li>By <a href="#" class="text-muted">{% if post.user is not null %} {{ post.user.name }} {% else %} uknown user {% endif %}</a></li>
+                            <li>{{ post.created | date('d/m/Y') }}</li>
+                            <li><a href="#" class="text-muted"><i class="icon-heart6 text-size-base text-pink position-left"></i> 281</a></li>
+                        </ul>
+
+                        <div class="content-group">
+                            {{ post.postText | raw }}
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}

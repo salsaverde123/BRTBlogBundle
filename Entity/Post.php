@@ -34,7 +34,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="postText", type="text")
+     * @ORM\Column(name="postText", type="text", nullable=true)
      */
     private $postText;
 
