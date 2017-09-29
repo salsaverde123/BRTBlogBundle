@@ -91,6 +91,9 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('show_template')
                         ->defaultValue('@BRTBlogBundle/Resources/Views/Blog/show_entries.html.twig')
                         ->end()
+                        ->scalarNode('pagination_template')
+                        ->defaultValue('@BRTBlogBundle/Resources/Views/Templates/pagination.html.twig')
+                        ->end()
                     ->end()
                 ->end()
 

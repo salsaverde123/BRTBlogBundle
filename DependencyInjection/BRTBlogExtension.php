@@ -82,6 +82,7 @@ class BRTBlogExtension extends Extension implements PrependExtensionInterface
                         "template" => $bundle_config['paginator']['template']
                     );
 
+                    $config["template"]["pagination"] = $bundle_config["views"]["pagination_template"];
                     $container->prependExtensionConfig($name, $config);
                 }
 
