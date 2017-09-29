@@ -32,7 +32,7 @@ class AdminEntriesController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $posts = $em->getRepository('BRTBlogBundle:Post')->findBy([],["created"=>"DESC"]);
+        $posts = $em->getRepository('BRTBlogBundle:Post')->findBy([],["id"=>"DESC"]);
 
         return $this->render('@BRTBlog/Admin/post/index.html.twig', array(
             'posts' => $posts,
@@ -80,7 +80,7 @@ class AdminEntriesController extends Controller
      */
     public function editAction(Request $request, Post $post)
     {
-        $deleteForm = $this->createDeleteForm($post);
+
         $editForm = $this->createForm('BRT\BlogBundle\Form\PostType', $post);
         $editForm->handleRequest($request);
 
@@ -97,8 +97,8 @@ class AdminEntriesController extends Controller
 
         return $this->render('@BRTBlog/Admin/post/edit.html.twig', array(
             'post' => $post,
-            'form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'form' => $editForm->createView()
+
         ));
     }
 

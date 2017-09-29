@@ -7,7 +7,7 @@
   "authors": [{
     "name": "Bartolomé Rojas Toledo",
     "email": "bartolomerojastoledo@gmail.com",
-    "homepage": ""
+    "homepage": "http://www.studio128k.com"
   }],
   "keywords": [
     "blog",
@@ -21,7 +21,8 @@
   "require": {
     "php": ">=5.5.9",
     "symfony/symfony": ">=3.3",
-    "vich/uploader-bundle": "^1.4"
+    "vich/uploader-bundle": "^1.4",
+    "knplabs/knp-paginator-bundle": "^2.6"
   },
   "autoload": {
     "psr-4": {

@@ -9,3 +9,7 @@ brt_blog_post:
 brt_blog_default:
     resource: "@BRTBlogBundle/Controller/DefaultController.php"
     type: annotation
+
+brt_blog_blog:
+    resource: "@BRTBlogBundle/Controller/BlogController.php"
+    type: annotation

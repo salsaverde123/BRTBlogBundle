@@ -49,6 +49,8 @@ class BRTBlogExtension extends Extension implements PrependExtensionInterface
             $configs        = $container->getExtensionConfig($this->getAlias());
             $bundle_config  = $this->processConfiguration(new Configuration(), $configs);
 
+            $container->setParameter("brt_blog_list_template", $bundle_config["views"]["list_template"]);
+            $container->setParameter("brt_blog_show_template", $bundle_config["views"]["show_template"]);
 
             foreach ($container->getExtensions() as $name => $extension) {
 
@@ -70,6 +72,21 @@ class BRTBlogExtension extends Extension implements PrependExtensionInterface
                         $container->prependExtensionConfig($name, $config);
                 }
 
+
+                // Configuramos la extensión de vich_uploader
+                if($name == "knp_paginator"){
+
+                    $config = array(
+                        "page_range" => $bundle_config['paginator']['page_range'],
+                        "default_options" => $bundle_config['paginator']['default_options'],
+                        "template" => $bundle_config['paginator']['template']
+                    );
+
+                    $container->prependExtensionConfig($name, $config);
+                }
+
+
+                /**     No se puede configurar el archivo security porque se sobreescribe la config     :(
 
                 // Configuramos el archivo security con lo necesario para el funcionamiento del bundle
                 if($name == "security"){
@@ -111,8 +128,21 @@ class BRTBlogExtension extends Extension implements PrependExtensionInterface
                     $securityConfigs["firewalls"] = $array;
 
 
+
+                    // Añadimos las reglas de control de acceso, no se puede sobreescribir porque symfony no lo permite
+
+                    $securityConfigs["access_control"][] = [
+                        "path" => "^/blog/default/login", "roles" => "IS_AUTHENTICATED_ANONYMOUSLY"
+                    ];
+                    $securityConfigs["access_control"][] = [
+                        "path" => "^/blog/admin", "roles" => "ROLE_ADMIN"
+                    ];
+
+
+                    var_dump($securityConfigs);
                     $container->prependExtensionConfig($name, $securityConfigs);
                 }
+                 * */
 
             }
 

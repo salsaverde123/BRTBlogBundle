@@ -29,6 +29,12 @@ class DefaultController extends Controller
     */
     public function loginAction(Request $request){
 
+        if($request->getMethod() == "POST"){
+            var_dump($request->request->all());
+            return new Response("Form login send");
+        }
+
+
         $authUtils = $this->get('security.authentication_utils');
 
         // get the login error if there is one
@@ -42,6 +48,18 @@ class DefaultController extends Controller
             'error'         => $error,
         ));
     }
+
+
+    /**
+     * @Route("/logout", name="brt_blog_logout")
+     */
+    public function logoutAction(Request $request){
+        $this->get('security.token_storage')->setToken(null);
+        $request->getSession()->invalidate();
+
+        return $this->redirectToRoute('brt_blog_login');
+    }
+
 
     /**
      * @Route("/creation-admin", name="brt_blog_creation_admin")
