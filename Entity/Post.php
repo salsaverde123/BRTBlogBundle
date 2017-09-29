@@ -48,7 +48,7 @@ class Post
     private $postImage;
 
     /**
-     * @Vich\UploadableField(mapping="post_image", fileNameProperty="postImage", size="imageSize")
+     * @Vich\UploadableField(mapping="post_image", fileNameProperty="postImage")
     */
     private $postImageFile;
 

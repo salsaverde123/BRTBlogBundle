@@ -157,7 +157,7 @@ that you can use to protect your application.
                 default_target_path: brt_blog_adminpage
     
     access_control:
-        - { path: /blog/default/admin, roles: [ ROLE_ADMIN ] }
-        - { path: /blog/login, roles: [ IS_AUTHENTICATED_ANONIMOUSLY ] }
+        - { path: ^/blog/admin, roles: ROLE_ADMIN }
+        - { path: ^/blog/default/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
 ```
