@@ -1,7 +1,7 @@
 {
 
   "name": "brt/blog-bundle",
-  "version": "0.8.3.3",
+  "version": "0.9.1.0",
   "description": "Symfony 3 Blog Bundle",
   "type": "symfony-bundle",
   "authors": [{
