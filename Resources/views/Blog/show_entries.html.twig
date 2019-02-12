@@ -24,12 +24,12 @@
 
                         <h3 class="text-semibold mb-5">
                             <a href="#" class="text-default">{{ post.postTitle }}</a>
+                            <small>{{ post.postSubtitle }}</small>
                         </h3>
 
                         <ul class="list-inline list-inline-separate text-muted content-group">
                             <li>By <a href="#" class="text-muted">{% if post.user is not null %} {{ post.user.name }} {% else %} uknown user {% endif %}</a></li>
                             <li>{{ post.created | date('d/m/Y') }}</li>
-                            <li><a href="#" class="text-muted"><i class="icon-heart6 text-size-base text-pink position-left"></i> 281</a></li>
                         </ul>
 
                         <div class="content-group">

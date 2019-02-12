@@ -10,4 +10,14 @@ namespace BRT\BlogBundle\Repository;
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    public function getLastPosts($limit = 10){
+
+        $dql = " SELECT post FROM BRTBlogBundle:Post post ORDER BY post.created DESC";
+        $query = $this->_em->createQuery($dql);
+        $query->setFirstResult(0);
+        $query->setMaxResults($limit);
+        return $query->getResult();
+
+    }
 }

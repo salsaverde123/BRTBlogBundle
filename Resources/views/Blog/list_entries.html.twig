@@ -8,6 +8,7 @@
                     <div class="panel-heading">
                         <h5 class="panel-title text-semibold">
                             <a href="#">{{ post.postTitle }}</a>
+                            <small>{{ post.postSubtitle }}</small>
                         </h5>
                     </div>
 
@@ -24,7 +25,7 @@
                             {% endif %}
                             <div class="caption-overflow">
                                 <span>
-                                    <a href="{{ path('brt_blog_blog_show', { 'id': post.id }) }}" class="btn btn-flat border-white text-white btn-rounded btn-icon legitRipple"><i class="icon-arrow-right8"></i></a>
+                                    <a href="{{ path('brt_blog_blog_show', { 'slug': post.slug }) }}" class="btn btn-flat border-white text-white btn-rounded btn-icon legitRipple"><i class="icon-arrow-right8"></i></a>
                                 </span>
                             </div>
                         </div>
@@ -41,10 +42,10 @@
                             <ul class="list-inline list-inline-separate heading-text text-muted">
                                 <li>By <a href="#" class="text-muted">{% if post.user is not null %} {{ post.user.name }} {% else %} uknown user {% endif %}</a></li>
                                 <li>{{ post.created | date('d/m/Y') }}</li>
-                                <li><a href="#" class="text-muted"><i class="icon-heart6 text-size-base text-pink position-left"></i> 281</a></li>
+                                {#<li><a href="#" class="text-muted"><i class="icon-heart6 text-size-base text-pink position-left"></i> 281</a></li>#}
                             </ul>
 
-                            <a href="{{ path('brt_blog_blog_show', { 'id': post.id }) }}" class="heading-text pull-right">Read more <i class="icon-arrow-right14 position-right"></i></a>
+                            <a href="{{ path('brt_blog_blog_show', { 'slug': post.slug }) }}" class="heading-text pull-right">Read more <i class="icon-arrow-right14 position-right"></i></a>
                         </div>
                     </div>
                 </div>

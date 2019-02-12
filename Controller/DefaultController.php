@@ -54,44 +54,4 @@ class DefaultController extends Controller
         return $this->redirectToRoute('brt_blog_login');
     }
 
-
-    /**
-     * @Route("/creation-admin", name="brt_blog_creation_admin")
-    */
-    public function creationAdminAction(Request $request){
-
-        $response = new StreamedResponse();
-
-        $response->setCallback(function(){
-
-            echo "Creandop admin... <br>";
-
-            $passwordText = "123456";
-            $user = new User();
-
-            $user->setName("Admin");
-            $user->setUsername("admin");
-            $user->setCreated(new \DateTime());
-            $user->setPassword($this->get('security.password_encoder')->encodePassword($user,$passwordText));
-            $user->setAdmin(1);
-            $user->setEmail("admin@email.com");
-            $user->setSalt("");
-
-            echo "Propiedades de usuario establecidas <br>";
-
-            $em = $this->getDoctrine()->getManager();
-
-            $em->persist($user);
-            $em->flush();
-
-            echo "Usuario guardado en base de datos.<br>";
-
-            echo "usuario: admin <br> password: 123456<br>";
-
-
-        });
-
-        return $response;
-
-    }
 }

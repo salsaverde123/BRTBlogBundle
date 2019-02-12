@@ -71,6 +71,12 @@
                                     {{ form_widget(form.postTitle, { 'attr': { 'class': 'form-control' } }) }}
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">SubTitle:</label>
+                                <div class="col-lg-9">
+                                    {{ form_widget(form.postSubtitle, { 'attr': { 'class': 'form-control' } }) }}
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <div class="thumb" style="padding: 10px;">
@@ -133,7 +139,8 @@
                 </div>
 
                 <div class="text-right">
-                    <button type="submit" class="btn btn-primary">Create <i class="icon-arrow-right14 position-right"></i></button>
+                    <a href="{{ path('brt_blog_blog_show', {'slug': post.slug}) }}" class="btn btn-default" target="_blank">Vista preiliminar</a>
+                    <button type="submit" class="btn btn-primary">Update <i class="icon-arrow-right14 position-right"></i></button>
                 </div>
             </div>
         </div>

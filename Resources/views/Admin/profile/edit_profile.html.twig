@@ -1,0 +1,84 @@
+{% extends '@BRTBlog/brt_blog_base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-9">
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title">User Profile<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+                </div>
+
+                <div class="panel-body">
+                    <form action="{{ path('brt_blog_admin_profile_edit') }}" method="post">
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <label>Name</label>
+                                    <input type="text" value="{{ user.name }}" name="name" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" name="username" value="{{ user.username }}" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                    <input type="text" value="{{ user.email }}" name="email" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary legitRipple">Save <i class="icon-arrow-right14 position-right"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title text-center">Change Password<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+                </div>
+
+                <div class="panel-body">
+                    <form action="{{ path('brt_blog_admin_profile_edit_password') }}" method="post">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12 form-group-lg">
+                                    <label>Current Password</label>
+                                    <input type="password" class="form-control" name="current_password" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Old Password</label>
+                                    <input type="password" class="form-control" name="new_password" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Old Password</label>
+                                    <input type="password" class="form-control" name="repeat_new_password" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary legitRipple">Save <i class="icon-arrow-right14 position-right"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

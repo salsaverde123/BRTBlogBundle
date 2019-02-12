@@ -15,7 +15,7 @@ class BlogController extends Controller {
 
 
     /**
-     * @Route("/posts", name="brt_blog_blog_list")
+     * @Route("/", name="brt_blog_blog_list")
     */
     public function postsListAction(Request $request){
 
@@ -39,7 +39,7 @@ class BlogController extends Controller {
     }
 
     /**
-     * @Route("/post/{id}", name="brt_blog_blog_show")
+     * @Route("/post/{slug}", name="brt_blog_blog_show")
     */
     public function showPostAction(Request $request){
 
@@ -48,9 +48,13 @@ class BlogController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
 
-        $post = $em->getRepository('BRTBlogBundle:Post')->find($request->get('id'));
+        $lastPosts = $em->getRepository('BRTBlogBundle:Post')->getLastPosts(10);
 
-        return $this->render($template,["post" => $post]);
+        $post = $em->getRepository('BRTBlogBundle:Post')->findOneBy(["slug" => $request->get('slug')]);
+
+        $post->setViews($post->getViews() ? $post->getViews() + 1 : 1);
+
+        return $this->render($template,["post" => $post, "lastPosts" => $lastPosts]);
 
     }
 
