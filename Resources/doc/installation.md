@@ -51,7 +51,12 @@ To access to admin page routing we implement the next code to your routing confi
 
 brt_blog:
     resource: "@BRTBlogBundle/Resources/config/routing.yml"
-    prefix:   /blog     # You can replace whathever you want
+    prefix:   /blog     # You can replace whathever you want for private routes
+    
+brt_blog_public:
+    resource: '@BRTBlogBundle/Resources/config/routing_public.yml'
+    prefix: '/noticias' # You can replace whathever you want for blog public routes
+
 
 
 ```

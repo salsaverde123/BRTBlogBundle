@@ -62,6 +62,7 @@
                                 <li>Created: {{ post.created | date('d/m/Y H:i:s') }}</li>
                                 <li>{% if post.updated is not null %}Updated: {{ post.updated | date('d/m/Y H:i:s') }} {% else %}  {% endif %}</li>
                             </ul>
+                            <a href="{{ path('brt_blog_blog_show',{'slug': post.slug}) }}" class="heading-text pull-right btn btn-xs btn-primary btn-icon btn-rounded" title="Show in frontend"><i class="icon-eye"></i></a>
                             <a href="{{ path('brt_blog_admin_entry_delete', { 'id': post.id }) }}" onclick="return confirm('¿ Seguro que deseas eliminar la entrada ?');" class="heading-text pull-right btn btn-xs btn-danger btn-icon btn-rounded"><i class="icon-trash"></i></a>
                             <a href="{{ path('brt_blog_admin_entry_edit', { 'id': post.id }) }}" class="heading-text pull-right btn btn-xs btn-primary btn-icon btn-rounded"><i class="icon-pencil"></i></a>
 

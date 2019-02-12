@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use BRT\BlogBundle\Util\Util;
 
 /**
  * @Route("/admin/entries")
@@ -54,6 +55,7 @@ class AdminEntriesController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $post->setCreated(\DateTime::createFromFormat('d/m/Y H:i:s',$post->getCreated()));
+            $post->setSlug(Util::slugify($post->getPostTitle(),'-'));
             $em->persist($post);
             $em->flush();
 

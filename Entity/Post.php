@@ -34,11 +34,24 @@ class Post
     /**
      * @var string
      *
+     * @ORM\Column(name="postSubtitle", type="string", length=255)
+     */
+    private $subTitle;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="postText", type="text", nullable=true)
      */
     private $postText;
 
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="text", nullable=true)
+     */
+    private $slug;
 
     /**
      * @var string
@@ -148,6 +161,42 @@ class Post
     public function getPostTitle()
     {
         return $this->postTitle;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSubTitle()
+    {
+        return $this->subTitle;
+    }
+
+    /**
+     * @param string $subTitle
+     * @return Post
+     */
+    public function setSubTitle($subTitle)
+    {
+        $this->subTitle = $subTitle;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string $slug
+     * @return Post
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
     }
 
     /**

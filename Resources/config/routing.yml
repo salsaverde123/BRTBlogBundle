@@ -1,6 +1,6 @@
 brt_blog_adminpage:
-    path:     /admin
-    defaults: { _controller: BRTBlogBundle:Admin:index }
+    resource: "@BRTBlogBundle/Controller/AdminController.php"
+    type:     annotation
 
 brt_blog_post:
     resource: "@BRTBlogBundle/Controller/AdminEntriesController.php"

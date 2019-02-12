@@ -14,6 +14,7 @@
     <link href="{{ asset('bundles/brtblog/template/assets/css/core.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('bundles/brtblog/template/assets/css/components.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('bundles/brtblog/template/assets/css/colors.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('bundles/brtblog/template/assets/css/custom.css') }}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
     {% block stylesheets %}{% endblock %}
 
@@ -52,7 +53,6 @@
 
     <!-- Page content -->
     <div class="page-content">
-
         {% if is_granted('ROLE_ADMIN') %}
                 <!-- Main sidebar -->
                 <div class="sidebar sidebar-main">
@@ -62,7 +62,7 @@
                         <div class="sidebar-user-material">
                             <div class="category-content">
                                 <div class="sidebar-user-material-content">
-                                    <a href="#"><img src="{{ asset('bundles/brtblog/template/assets/images/placeholder.jpg') }}" class="img-circle img-responsive" alt=""></a>
+                                    <a href="{{ path('brt_blog_admin_profile_edit') }}"><img src="{{ asset('bundles/brtblog/template/assets/images/placeholder.jpg') }}" class="img-circle img-responsive" alt=""></a>
                                     <h6>{{ app.user.name }} @{{ app.user.username }}</h6>
                                     <span class="text-size-small">{{ app.user.email }}</span>
                                 </div>
@@ -74,9 +74,8 @@
 
                             <div class="navigation-wrapper collapse" id="user-nav">
                                 <ul class="navigation">
-                                    <li><a href="#"><i class="icon-user-plus"></i> <span>My profile</span></a></li>
+                                    <li><a href="{{ path('brt_blog_admin_profile_edit') }}"><i class="icon-user-plus"></i> <span>My profile</span></a></li>
                                     <li class="divider"></li>
-                                    <li><a href="#"><i class="icon-cog5"></i> <span>Settings</span></a></li>
                                     <li><a href="{{ path('brt_blog_logout') }}"><i class="icon-switch2"></i> <span>Logout</span></a></li>
                                 </ul>
                             </div>
@@ -91,7 +90,7 @@
 
                                     <!-- Main -->
                                     <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
-                                    <li class="active"><a href="{{ path('brt_blog_admin_entry_index') }}"><i class="icon-home4"></i> <span>Entries</span></a></li>
+                                    <li class="active"><a href="{{ path('brt_blog_admin_entry_index') }}"><i class="icon-home4"></i> <span>Posts</span></a></li>
 
                                 </ul>
                             </div>
@@ -111,6 +110,14 @@
             {% endblock %}
             <!-- Content area -->
             <div class="content">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }}">
+                            <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
 
                 {% block body %}
 
