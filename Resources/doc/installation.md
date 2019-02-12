@@ -87,23 +87,7 @@ php bin/console doctrine:schema:update --force
 
 
 
-Step 6: Create admin user
-------
-
-Create first user to initialize the blog project:
-
-default_user: admin
-
-default_password: 123456
-
-```console
-
-php bin/console brt:blogbundle:new-admin
-
-```
-
-
-Step 7: Add configuration
+Step 6: Add configuration
 -----
 
 Add configuration to your config.yml
@@ -123,7 +107,7 @@ Add configuration to your config.yml
 ```
 
 
-Step 8: Protect the access:
+Step 7: Protect the access:
 -----
 
 Add configuration to your security.yml to provide your application with some acces rules. BrtBlogBundle provide an user table 
@@ -164,5 +148,20 @@ that you can use to protect your application.
     access_control:
         - { path: ^/blog/admin, roles: ROLE_ADMIN }
         - { path: ^/blog/default/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+```
+
+Step 8: Create admin user and the first post
+------
+
+Create first user to initialize the blog project:
+
+default_user: admin
+
+default_password: 123456
+
+```console
+
+php bin/console brt:blogbundle:new-admin
 
 ```
