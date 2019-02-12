@@ -34,10 +34,9 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="postSubtitle", type="string", length=255)
+     * @ORM\Column(name="postSubtitle", type="string", length=255, nullable=true)
      */
-    private $subTitle;
-
+    private $postSubtitle;
 
     /**
      * @var string
@@ -166,18 +165,18 @@ class Post
     /**
      * @return string
      */
-    public function getSubTitle()
+    public function getPostSubtitle()
     {
-        return $this->subTitle;
+        return $this->postSubtitle;
     }
 
     /**
-     * @param string $subTitle
+     * @param string $postSubtitle
      * @return Post
      */
-    public function setSubTitle($subTitle)
+    public function setPostSubtitle($postSubtitle)
     {
-        $this->subTitle = $subTitle;
+        $this->postSubtitle = $postSubtitle;
         return $this;
     }
 

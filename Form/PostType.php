@@ -21,6 +21,9 @@ class PostType extends AbstractType
             ->add('postTitle', TextType::class, [
                 "required" => true
             ])
+            ->add('postSubtitle', TextType::class, [
+                "required" => false
+            ])
             ->add('postText', HiddenType::class,[
                 "required" => true
             ])

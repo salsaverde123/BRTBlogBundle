@@ -1,3 +1,8 @@
 .page-container{
     min-height: 700px !important;
 }
+.vich-image a, .vich-image img {
+    max-width: 100%;
+    display: block;
+    position: relative;
+}

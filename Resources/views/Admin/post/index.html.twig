@@ -47,6 +47,7 @@
                         <div class="blog-preview">
                             <h5 class="blog-title text-semibold">
                                 <a href="#">{{ post.postTitle }}</a>
+                                <small>{{ post.postSubtitle }}</small>
                             </h5>
 
                             {% set postText = (post.postText | striptags) | trim('&nbsp;') %}
