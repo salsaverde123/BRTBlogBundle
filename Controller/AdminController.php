@@ -43,9 +43,20 @@ class AdminController extends Controller
     /**
      * @Route("/profile/edit", name="brt_blog_admin_profile_edit")
      */
-    public function editProfileAction(){
+    public function editProfileAction(Request $request){
 
+        /** @var User $user */
         $user = $this->getUser();
+
+        if($request->getMethod() == "POST"){
+            $em = $this->getDoctrine()->getManager();
+            $user->setUsername($request->get('username'));
+            $user->setName($request->get('name'));
+            $user->setEmail($request->getMethod('email'));
+            $em->persist($user);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('success', 'Perfil modificado correctamente');
+        }
 
         return $this->render('@BRTBlog/Admin/profile/edit_profile.html.twig', ['user' => $user]);
 

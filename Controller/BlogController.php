@@ -52,6 +52,8 @@ class BlogController extends Controller {
 
         $post = $em->getRepository('BRTBlogBundle:Post')->findOneBy(["slug" => $request->get('slug')]);
 
+        $post->setViews($post->getViews() ? $post->getViews() + 1 : 1);
+
         return $this->render($template,["post" => $post, "lastPosts" => $lastPosts]);
 
     }
