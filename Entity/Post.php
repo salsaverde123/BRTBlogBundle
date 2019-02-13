@@ -34,7 +34,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="postSubtitle", type="string", length=255, nullable=true)
+     * @ORM\Column(name="postSubtitle", type="string", length=500, nullable=true)
      */
     private $postSubtitle;
 
