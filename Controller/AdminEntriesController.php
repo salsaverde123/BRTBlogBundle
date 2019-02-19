@@ -89,6 +89,7 @@ class AdminEntriesController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $post->setCreated(\DateTime::createFromFormat('d/m/Y H:i:s',$post->getCreated()));
+            $post->setSlug(Util::slugify($post->getPostTitle(),'-'));
             $post->setUpdated(new \DateTime());
 
             $em->persist($post);
@@ -100,7 +101,6 @@ class AdminEntriesController extends Controller
         return $this->render('@BRTBlog/Admin/post/edit.html.twig', array(
             'post' => $post,
             'form' => $editForm->createView()
-
         ));
     }
 
